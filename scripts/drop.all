@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo Dropping App::Office::Contacts::Donations tables
+
+cd ~/perl.modules/CGI-Office-Contacts-Donations
+
+perl -Ilib -I../CGI-Office-Contacts scripts/drop.tables.pl
+
+echo Dropping App::Office::Contacts tables
+
+cd ~/perl.modules/CGI-Office-Contacts
+
+perl -Ilib scripts/drop.tables.pl
+
+echo Done

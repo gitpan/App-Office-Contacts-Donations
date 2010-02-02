@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo Populating App::Office::Contacts tables
+
+cd ~/perl.modules/CGI-Office-Contacts
+
+perl -Ilib scripts/populate.tables.pl
+
+echo Populating App::Office::Contacts::Donations tables
+
+cd ~/perl.modules/CGI-Office-Contacts-Donations
+
+perl -Ilib -I../CGI-Office-Contacts scripts/populate.tables.pl
+
+echo Done

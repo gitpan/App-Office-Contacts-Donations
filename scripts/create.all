@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo Creating App::Office::Contacts tables
+
+cd ~/perl.modules/CGI-Office-Contacts
+
+perl -Ilib scripts/create.tables.pl
+
+echo Creating App::Office::Contacts::Donations tables
+
+cd ~/perl.modules/CGI-Office-Contacts-Donations
+
+perl -Ilib -I../CGI-Office-Contacts scripts/create.tables.pl
+
+echo Done

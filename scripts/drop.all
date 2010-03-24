@@ -1,15 +1,17 @@
 #!/bin/bash
+#
+# $1 may be -v.
 
 echo Dropping App::Office::Contacts::Donations tables
 
-cd ~/perl.modules/CGI-Office-Contacts-Donations
+cd ~/perl.modules/App-Office-Contacts-Donations
 
-perl -Ilib -I../CGI-Office-Contacts scripts/drop.tables.pl
+perl -Ilib -I../App-Office-Contacts scripts/drop.tables.pl $1
 
 echo Dropping App::Office::Contacts tables
 
-cd ~/perl.modules/CGI-Office-Contacts
+cd ~/perl.modules/App-Office-Contacts
 
-perl -Ilib scripts/drop.tables.pl
+perl -Ilib scripts/drop.tables.pl $1
 
 echo Done

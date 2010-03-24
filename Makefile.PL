@@ -25,6 +25,8 @@ WriteMakefile
 	PREREQ_PM =>
 	{
 		App::Office::Contacts => 0,
+		Moose                 => 0.98,
+		namespace::autoclean  => 0.09,
 		Scalar::Util          => 0,
 	},
 	VERSION_FROM	=> 'lib/CGI/Office/Contacts/Donations.pm',

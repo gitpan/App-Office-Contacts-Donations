@@ -11,7 +11,7 @@ has donations => (is => 'rw', isa => 'App::Office::Contacts::Donations::Database
 
 use namespace::autoclean;
 
-our $VERSION = '1.02';
+our $VERSION = '1.05';
 
 # -----------------------------------------------
 
@@ -21,8 +21,7 @@ sub BUILD
 
 	$self -> donations(App::Office::Contacts::Donations::Database::Donations -> new
 	(
-		db     => $self,
-		logger => $self -> logger,
+		db => $self,
 	) );
 
 }	# End of BUILD.
@@ -35,8 +34,7 @@ sub init
 
 	$self -> util(App::Office::Contacts::Donations::Database::Util -> new
 	(
-		db     => $self,
-		logger => $self -> logger,
+		db => $self,
 	) );
 
 } # End of init.

@@ -1,4 +1,39 @@
-Revision history for Perl extension App::Office::Contacts.
+Revision history for Perl extension App::Office::Contacts::Donations.
+
+1.05  Tue Mar  2  9:28:00 2010
+	- In cgiapp_prerun() protect against XSS and CSRF:
+		o Only accept CGI params if the request method is 'POST'.
+		o Ensure pseudo-random number among params matches cookie.
+	- Change 'use base' to 'use parent'.
+	- Remove form_action from config file. See sub script_name.
+	- Replace references to FCGI with Plack. This includes no longer
+		shipping FCGI-specific files and patches to Apache's httpd.conf.
+	- Ship httpd/cgi-bin/office/donations.psgi.
+	- Adopt Log::Dispatch::Configurator.
+		See App::Office::Contacts::Util::LogConfig.
+	- Replace Carp::croak with die, assuming calling code uses Try::Tiny.
+	- Stop using Time::Elapsed (at table create/populate time).
+	- In drop.tables.pl and create.tables.pl, change the 'verbose+' option
+		definition to 'verbose', since the '+' doesn't make sense.
+	- Add comments to .htoffice.donations.conf, while simplifying the
+		discussion of the Javascript URL.
+	- Change the default URL of the FAQ.
+	- Add stand-alone faq.html for the FAQ, copied from App::Office::Contacts.
+	- Use common::sense instead of strict and warnings.
+	- Add unicode to .htoffice.donations.conf - used by SQLite - and add
+		corresponding code to BEGIN{} in App::Office::Contacts::Database,
+		in case anyone wants to use DBD::SQLite.
+
+1.04  Sun Feb 21 12:54:15 2010
+	- Remove text 'All rights reserved' (for Debian licensing).
+	- Remove POD heads 'Required Modules' and 'Changes'.
+	- Replace personal doc root with /var/www.
+	- Use namespace::autoclean with Moose.
+
+1.03  Fri Feb  5 17:27:00 2010
+	- Remove personal use lib from CGI scripts.
+ 	- Change .../cgi/... to .../app/... in dirs and config file.
+	- Fix some scripts which still referred to CGI*.
 
 1.02  Fri Jan 29 09:52:00 2010
 	- Change namespace from CGI::Office::* to App::Office::* after discussion with Matt Trout

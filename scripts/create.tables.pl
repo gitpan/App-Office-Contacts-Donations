@@ -26,7 +26,7 @@ if ($option_parser -> getoptions
 (
  \%option,
  'help',
- 'verbose+',
+ 'verbose',
 ) )
 {
 	pod2usage(1) if ($option{'help'});
@@ -69,9 +69,6 @@ Print help and exit.
 =item -verbose
 
 Print progress messages.
-
-If -v -v is used, print even more progress messages. In this case, the names
-of all localities within states within countries (Australia, America) will be displayed.
 
 =back
 

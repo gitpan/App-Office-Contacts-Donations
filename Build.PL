@@ -14,6 +14,8 @@ my($builder) = Module::Build -> new
 	requires =>
 	{
 		App::Office::Contacts => 0,
+		Moose                 => 0.98,
+		namespace::autoclean  => 0.09,
 		Scalar::Util          => 0,
 	},
 );

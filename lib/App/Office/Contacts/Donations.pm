@@ -5,7 +5,7 @@ use warnings;
 
 # We don't use Moose because we isa CGI::Application.
 
-our $VERSION = '1.02';
+our $VERSION = '1.05';
 
 # -----------------------------------------------
 
@@ -17,10 +17,65 @@ C<App::Office::Contacts::Donation> - A web-based donations manager
 
 =head1 Synopsis
 
-Run /cgi-bin/office/contacts.cgi or /office/contacts, both of which are shipped with
-C<App::Office::Contacts>.
+The scripts discussed here, I<donations.cgi> and I<donations.psgi>, are shipped with this module.
 
-They will have extra features now that you have installed C<App::Office::Contacts::Donation>.
+A classic CGI script, I<donations.cgi>:
+
+	use strict;
+	use warnings;
+
+	use CGI;
+	use CGI::Application::Dispatch;
+
+	# ---------------------
+
+	my($cgi) = CGI -> new;
+
+	CGI::Application::Dispatch -> dispatch
+	(
+		args_to_new => {QUERY => $cgi},
+		prefix      => 'App::Office::Contacts::Donations::Controller',
+		table       =>
+		[
+		''              => {app => 'Initialize', rm => 'display'},
+		':app'          => {rm => 'display'},
+		':app/:rm/:id?' => {},
+		],
+	);
+
+A L<Plack> script, I<donations.psgi>:
+
+	#!/usr/bin/perl
+
+	use strict;
+	use warnings;
+
+	use CGI::Application::Dispatch::PSGI;
+
+	use Plack::Builder;
+
+	# ---------------------
+
+	my($app) = CGI::Application::Dispatch -> as_psgi
+	(
+		prefix => 'App::Office::Contacts::Donations::Controller',
+		table  =>
+		[
+		''              => {app => 'Initialize', rm => 'display'},
+		':app'          => {rm => 'display'},
+		':app/:rm/:id?' => {},
+		],
+	);
+
+	builder
+{
+		enable "Plack::Middleware::Static",
+		path => qr!^/(assets|yui)/!,
+		root => '/var/www';
+		$app;
+	};
+
+For more on Plack, see L<My intro to Plack|http://savage.net.au/Perl/html/plack.for.beginners.html>.
 
 =head1 Description
 
@@ -35,10 +90,8 @@ help on unpacking and installing distros.
 
 =head1 Installation Pre-requisites
 
-=head2 App::Office::Contacts
-
-C<App::Office::Contacts::Donations> contains some files which overwrite files shipped with
-C<App::Office::Contacts>.
+The primary pre-requisite is C<App::Office::Contacts>. You should study the documentation for that
+module before proceeding.
 
 =head1 Install the module
 
@@ -66,8 +119,16 @@ Either way, you'll need to install all the other files which are shipped in the 
 
 Copy the distro's htdocs/assets/ directory to your doc root.
 
-Specifically, my doc root is /home/ron/httpd/prefork/htdocs/, so I end up with
-/home/ron/httpd/prefork/htdocs/assets/.
+Specifically, my doc root is /var/www/, so I end up with /var/www/assets/.
+
+=head2 Install the trivial CGI script and the L<Plack> script
+
+Copy the distro's httpd/cgi-bin/office/ directory to your web server's cgi-bin/ directory,
+and make I<donations.cgi> executable.
+
+My cgi-bin/ dir is /usr/lib/cgi-bin/, so I end up with /usr/lib/cgi-bin/office/donations.cgi.
+
+Now I can run http://127.0.0.1/cgi-bin/office/donations.cgi (but not yet!).
 
 =head2 Creating and populating the database
 
@@ -104,8 +165,7 @@ formally installed, and then the code will look in the same place for .htoffice.
 
 =head2 Start testing
 
-Point your broswer at http://127.0.0.1/cgi-bin/contacts.cgi (trivial script), or
-http://127.0.0.1/office/contacts (fancy script).
+Point your broswer at http://127.0.0.1/cgi-bin/donations.cgi (trivial script).
 
 =head1 FAQ
 
@@ -155,8 +215,7 @@ Home page: http://savage.net.au/index.html
 
 =head1 Copyright
 
-Australian copyright (c) 2009, Ron Savage. All rights reserved.
-
+Australian copyright (c) 2009, Ron Savage.
 	All Programs of mine are 'OSI Certified Open Source Software';
 	you can redistribute them and/or modify them under the terms of
 	The Artistic License, a copy of which is available at:

@@ -2,14 +2,7 @@
 #
 # Name:
 # donations.cgi.
-#
-# Note:
-# Need use lib here because CGI scripts don't have access to
-# the PerlSwitches used in Apache's httpd.conf.
-# Also, it saves having to install the module repeatedly during testing.
 
-use lib '/home/ron/perl.modules/CGI-Office-Contacts/lib';
-use lib '/home/ron/perl.modules/CGI-Office-Contacts-Donations/lib';
 use strict;
 use warnings;
 
@@ -18,12 +11,9 @@ use CGI::Application::Dispatch;
 
 # ---------------------
 
-my($cgi) = CGI -> new;
-
 CGI::Application::Dispatch -> dispatch
 (
- args_to_new => {QUERY => $cgi},
- debug       => 1,
+ args_to_new => {QUERY => CGI -> new},
  prefix      => 'App::Office::Contacts::Donations::Controller',
  table       =>
  [

@@ -8,7 +8,7 @@ extends 'App::Office::Contacts::View::Base';
 
 use namespace::autoclean;
 
-our $VERSION = '1.02';
+our $VERSION = '1.05';
 
 # -----------------------------------------------
 
@@ -21,7 +21,7 @@ sub build_donations_js
 	my($js) = $self -> load_tmpl('update.donations.js');
 
 	$js -> param(context     => $context);
-	$js -> param(form_action => ${$self -> config}{'form_action'});
+	$js -> param(form_action => $self -> script_name);
 
 	return $js -> output;
 

@@ -10,7 +10,7 @@ extends 'App::Office::Contacts::Util::Create';
 
 use namespace::autoclean;
 
-our $VERSION = '1.05';
+our $VERSION = '1.07';
 
 # -----------------------------------------------
 

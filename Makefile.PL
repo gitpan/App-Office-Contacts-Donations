@@ -24,10 +24,12 @@ WriteMakefile
 	PL_FILES  => {},
 	PREREQ_PM =>
 	{
-		App::Office::Contacts => 0,
+		App::Office::Contacts => 1.06,
 		Moose                 => 0.98,
 		namespace::autoclean  => 0.09,
 		Scalar::Util          => 0,
+		Test::Simple          => 0.94,
+		Test::Pod             => 1.41,
 	},
 	VERSION_FROM	=> 'lib/CGI/Office/Contacts/Donations.pm',
 );

@@ -11,7 +11,7 @@ has donations => (is => 'rw', isa => 'App::Office::Contacts::Donations::Database
 
 use namespace::autoclean;
 
-our $VERSION = '1.08';
+our $VERSION = '1.09';
 
 # -----------------------------------------------
 

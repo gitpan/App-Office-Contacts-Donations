@@ -1,9 +1,9 @@
 #!/usr/bin/perl
 #
 # Run with:
-# start_server --port=127.0.0.1:5003 -- starman --workers 2 httpd/cgi-bin/office/donations.psgi &
+# start_server --port=127.0.0.1:5004 -- starman --workers 1 httpd/cgi-bin/office/donations.psgi &
 # or
-# plackup --host 127.0.0.1 --port 5003 httpd/cgi-bin/office/donations.psgi
+# plackup --host 127.0.0.1 --port 5004 httpd/cgi-bin/office/donations.psgi &
 
 use strict;
 use warnings;

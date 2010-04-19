@@ -6,7 +6,7 @@ use warnings;
 
 # We don't use Moose because we isa CGI::Application.
 
-our $VERSION = '1.07';
+our $VERSION = '1.08';
 
 # -----------------------------------------------
 
@@ -112,6 +112,23 @@ EJS
 	return $head_js;
 
 } # End of build_head_js.
+
+# -----------------------------------------------
+
+sub display
+{
+	my($self)        = @_;
+	my($cookie_name) = 'donations';
+
+	$self -> log(debug => 'Entered display');
+
+	return 'Invalid cookie digest' if ($self -> validate_post($cookie_name) == 0);
+
+	$self -> generate_cookie($cookie_name);
+
+	return $self -> build_web_page;
+
+} # End of display.
 
 # -----------------------------------------------
 

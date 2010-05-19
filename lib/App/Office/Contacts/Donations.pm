@@ -5,7 +5,7 @@ use warnings;
 
 # We don't use Moose because we isa CGI::Application.
 
-our $VERSION = '1.09';
+our $VERSION = '1.10';
 
 # -----------------------------------------------
 
@@ -206,6 +206,12 @@ scripts/report.tables.pl -v
 =back
 
 =back
+
+=head1 Support
+
+Email the author, or log a bug on RT:
+
+https://rt.cpan.org/Public/Dist/Display.html?Name=App-Office-Contacts-Donations
 
 =head1 Author
 

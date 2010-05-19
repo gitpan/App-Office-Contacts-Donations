@@ -13,10 +13,10 @@ my($builder) = Module::Build -> new
 	},
 	requires =>
 	{
-		App::Office::Contacts => 1.06,
+		App::Office::Contacts => 1.10,
 		Moose                 => 0.98,
 		namespace::autoclean  => 0.09,
-		Scalar::Util          => 0,
+		Scalar::Util          => 1.23,
 	},
 );
 

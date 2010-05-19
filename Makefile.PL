@@ -27,7 +27,7 @@ WriteMakefile
 		App::Office::Contacts => 1.06,
 		Moose                 => 0.98,
 		namespace::autoclean  => 0.09,
-		Scalar::Util          => 0,
+		Scalar::Util          => 1.23,
 		Test::Simple          => 0.94,
 		Test::Pod             => 1.41,
 	},
